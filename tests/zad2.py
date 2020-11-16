@@ -1,6 +1,7 @@
 import unittest
 from src.sample.zad2 import *
 from parameterized import parameterized, parameterized_class
+from nose.tools import assert_equal, assert_raises
 
 
 class PasswordParameterizedPackage(unittest.TestCase):
@@ -53,6 +54,28 @@ class PasswordParameterizedPackage2Raises(unittest.TestCase):
 
     def setUp(self):
         self.password = Password()
+
+
+@parameterized([
+    ("", False),
+    ("AaBbCc123#", True),
+    ("ABc12#", False),
+    ("aabbcc123#", False),
+    ("AaBbCc#&$", False),
+    ("AaBbCc123", False),
+])
+def test_third_parameterized_tests(pwd, exp):
+    password = Password()
+    assert_equal(password.ValidPassword(pwd), exp)
+
+
+@parameterized([
+    (2115, TypeError),
+    ([], TypeError),
+])
+def test_third_parameterized_raises(inp, exp):
+    password = Password()
+    assert_raises(exp, password.ValidPassword, inp)
 
 
 if __name__ == '__main__':
