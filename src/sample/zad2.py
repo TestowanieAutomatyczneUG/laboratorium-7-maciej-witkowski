@@ -1,31 +1,20 @@
-class RomanNumerals:
+
+import string
+
+
+class Password:
     def __init__(self):
-        self.base = {
-            1: 'I',
-            5: 'V',
-            10: 'X',
-            50: 'L',
-            100: 'C',
-            500: 'D',
-            1000: 'M'
-        }
+        self.special_characters = set(string.punctuation.replace("_", ""))
 
-    def roman(self, num):
-        def partOfRoman(numPart, decimalPart):
-            if 1 <= numPart <= 3:
-                return self.base[int('1' + str('0' * decimalPart))] * numPart
-            elif numPart == 4:
-                return self.base[int('1' + str('0' * decimalPart))] + self.base[int('5' + str('0' * decimalPart))]
-            elif 5 <= numPart <= 8:
-                return self.base[int('5' + str('0' * decimalPart))] + (
-                            (numPart - 5) * self.base[int('1' + str('0' * decimalPart))])
-            elif numPart == 9:
-                return self.base[int('1' + str('0' * decimalPart))] + self.base[int('10' + str('0' * decimalPart))]
+    def ValidPassword(self, password):
+        if not isinstance(password, str):
+            raise TypeError("Password is not of type string!")
+
+        if len(password) >= 8:
+            if any(x.isupper() for x in password) and any(x.isdigit() for x in password) and any(
+                    x in self.special_characters for x in password):
+                return True
             else:
-                return ""
-
-        divided = [int(i) for i in str(num)]
-        result = ""
-        for i in range(len(divided)):
-            result += partOfRoman(divided[i], (len(divided) - i) - 1)
-        return result
+                return False
+        else:
+            return False
