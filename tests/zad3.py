@@ -26,6 +26,7 @@ class PlanetsParameterizedPackage(unittest.TestCase):
         (78946545, None, Exception),
         (None, None, Exception),
         (879352463365, "Europa", Exception),
+        (0, "Ziemia", Exception)
     ])
     def test_parameterized_rises(self, inp1, inp2, exp):
         self.assertRaises(exp, self.temp.game, inp1, inp2)
