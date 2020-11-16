@@ -1,0 +1,5 @@
+#zad1 (hamming) - parametric tests (raises)
+AATG,AAA,Invalid length of a string or b string
+ATA,AGTG,Invalid length of a string or b string
+ ,G,Invalid length of a string or b string
+G, ,Invalid length of a string or b string
