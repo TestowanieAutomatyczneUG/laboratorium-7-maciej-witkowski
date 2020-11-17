@@ -15,5 +15,3 @@ script: tox
 
 notifications:
   email: false
-
-repo_token: AfI7GoyRHj7FdI98ECO78pVjnFOq0Xp26
